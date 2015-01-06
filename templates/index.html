@@ -1,0 +1,50 @@
+<DOCTYLE HTML>
+<head>
+    <meta content="text/html; charset=utf-8 "/>
+	<title>rss结构测试</title>
+	<style type="text/css">
+	.content{
+		text-align: center;
+	}
+	.btn{
+		width:50px;
+		height: 30px;
+		color: red;
+	}
+	.text{
+		height: 30px;
+	}
+	.title{
+		color: #38964C;
+	}
+	</style>
+
+</head>
+    <body>
+        <div class="content">
+        {% if url %}
+    	<h1>rss:{{url}}结构信息：</h1>
+    		<h3>Title个数:{{results['title']}}</h3>
+    		<h3>Link个数:{{results['link']}}</h3>
+    		<h3>Pubdate个数:{{results['pubdate']}}</h3>
+    		<h3>Description个数:{{results['descr']}}</h3>
+    		<h3>Content个数:{{results['content']}}</h3>
+    		<h2>第一条和第二条Title:</h2>
+    		{% for t in results['t2'] %}
+              <h4 class="title">{{t}}</h4>
+    		{% endfor%}
+        {% else %}
+        <h1>提交rss网址：</h1>
+        <input type="text" class="text"name="text" id="text" placeholder="请输入rss网址">
+        <button id="btn" class="btn" onclick="submit()">提交</button>
+        </div>
+        {% endif %}
+    </body>
+<script type="text/javascript">
+   function submit () {
+	  var text=document.getElementById('text');
+	 		var url="?url="+text.value;
+	 		window.location.href=url;
+	 	};
+</script>
+</html>
