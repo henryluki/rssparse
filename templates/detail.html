@@ -1,0 +1,79 @@
+<html>
+　　<head>
+　　<meta name="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="nick (http://nicksite.me)">
+　　　　<title></title>
+<style type="text/css">
+body{
+	/*background: #e5e4db;*/
+	font-family:cursive,微软雅黑,sans-serif;
+	font-size:16px;
+}
+h3{
+    padding-left:5%;
+}
+.container{
+    background-color:#ffffff;
+    margin:25%;
+    margin-bottom: 30px;
+    margin-top:0;
+}
+.content{
+    padding:5%;
+    display:none;
+}
+a{
+   color:#1A858F;
+   font-size: 18px;
+}
+img{
+   width:100%;
+}
+button{
+   float:right;
+   background-color: #889686;
+}
+</style>
+</head>
+<base target="_blank" />
+<body>
+<div class='container'>制作:<a href='http://nicksite.me')>Nick</a>
+<h1 style='text-align:center;color:#216800'>{{article}}</h1>
+ {% for c in content%}
+<h3>
+{{c.title}}
+<a style='text-align:center;'href="{{c.link}}">link>></a>
+<button id='show-hide{{loop.index}}'>阅读</button>
+</h3>
+<div class='content' id='content{{loop.index}}'>
+{{c.descr|safe}}{{c.content|safe}}	
+</div>
+ {% endfor %} 
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">	
+ $(document).ready(function(){
+  	var length=61;
+  	for ( var i=1;i<length;i++)
+  	{
+  		 $('#show-hide'+i).click(function(){
+  		 	    var content=$(this).parent().next();
+  		 		content.show("slow");
+  		 		if(content.show()){
+  		 			content.prev().css({"background":"#889686","color":"#ffffff"});
+  		 			// content.css({"background":"#E1ECDD","color":"#000"});
+  		 			// $("body").css({"background":"#ffffff"});
+  		 			content.mouseleave(function(){content.hide("slow"); 
+                   // $("body").css({"background":"#e5e4db"});
+                    var height=$(this).prev().offset().top;
+                   $('body,html').animate({scrollTop:height},"slow");
+  		 		});
+  		 	   }
+       	
+       });
+  	}
+  })
+  </script>
+	</body>
+	</html>
